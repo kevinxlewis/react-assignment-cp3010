@@ -52,9 +52,16 @@
         {
             "name": "The Fast and the Furious", 
             "release_date": "June 22, 2001", 
-            "actors": ["Vin Diesel", "JPaul Walker", "Jordana Brewster"], 
+            "actors": ["Vin Diesel", "Paul Walker", "Jordana Brewster"], 
             "poster": "https://m.media-amazon.com/images/M/MV5BNzlkNzVjMDMtOTdhZC00MGE1LTkxODctMzFmMjkwZmMxZjFhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg", 
             "rating": "3.5"
+        },
+        {
+            "name": "Home Alone", 
+            "release_date": "November 16, 1990", 
+            "actors": ["Macaulay Culkin", "Joe Pesci", "Daniel Stern"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BMzFkM2YwOTQtYzk2Mi00N2VlLWE3NTItN2YwNDg1YmY0ZDNmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg", 
+            "rating": "4.0"
         }
     ]
 }
