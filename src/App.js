@@ -1,13 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import Navbar from './pages/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './NavBar';
+import Movies from './pages/Movies';
+import MovieReview from './pages/MovieReview';
+import { useEffect, useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
 
-      <Navbar />
-    </div>
+
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <div id="body">
+          <h1>Movie Reviews</h1>
+            <NavBar />
+              <Routes>
+                <Route exact path="/" element={<Movies />} />
+                <Route path="/MovieReview" element={<MovieReview />} />
+              </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

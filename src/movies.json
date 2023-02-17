@@ -1,0 +1,74 @@
+{
+    "movies" : [
+        {
+            "name": "The Batman", 
+            "release_date": "March 4, 2022", 
+            "actors": ["Robert Pattinson", "Zoe Kravitz", "Paul Dano"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX1000_.jpg", 
+            "rating": "4.2"
+        },
+        {
+            "name": "Top Gun: Maverick", 
+            "release_date": "May 27, 2022", 
+            "actors": ["Tom Cruise", "Miles Teller", "Val Kilmer"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg", 
+            "rating": "4.7"
+        },
+        {
+            "name": "The Lord of the Rings: The Return of the King", 
+            "release_date": "December 17, 2003", 
+            "actors" : ["Elijah Wood", "Ian McKellen", "Andy Serkis"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg", 
+            "rating": "4.5"
+        },
+        {
+            "name": "Spider-Man 3", 
+            "release_date": "May 4, 2007", 
+            "actors": ["Tobey Maguire", "Kirsten Dunst", "Topher Grace"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BYTk3MDljOWQtNGI2My00OTEzLTlhYjQtOTQ4ODM2MzUwY2IwXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg", 
+            "rating": "3.0"
+        },
+        {
+            "name": "The Shawshank Redemption", 
+            "release_date": "September 22, 1994", 
+            "actors": ["Morgan Freeman", "Gil Bellows", "Tim Robbins"], 
+            "poster": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg", 
+            "rating": "4.5"
+        },
+        {
+            "name": "Seven", 
+            "release_date": "September 22, 1995", 
+            "actors": ["Morgan Freeman", "Brad Pitt", "Gwyneth Paltrow"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg", 
+            "rating": "4.5"
+        },
+        {
+            "name": "Interstellar", 
+            "release_date": "November 7, 2014", 
+            "actors": ["Matthew McConaughey", "Jessica Chastain", "Anne Hathaway"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg", 
+            "rating": "4.5"
+        },
+        {
+            "name": "Forrest Gump", 
+            "release_date": "July 6, 1994", 
+            "actors": ["Tom Hanks", "Robin Wright", "Gary Sinise"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+            "rating": "4.5"
+        },
+        {
+            "name": "If I Stay", 
+            "release_date": "August 22, 2014", 
+            "actors": ["Chloe Grace", "Jamie Blackley", "Liana Liberato"], 
+            "poster": "https://upload.wikimedia.org/wikipedia/en/e/ec/If_I_Stay_poster.jpg", 
+            "rating": "3.5"
+        },
+        {
+            "name": "The Fast and the Furious", 
+            "release_date": "June 22, 2001", 
+            "actors": ["Vin Diesel", "Paul Walker", "Jordana Brewster"], 
+            "poster": "https://m.media-amazon.com/images/M/MV5BNzlkNzVjMDMtOTdhZC00MGE1LTkxODctMzFmMjkwZmMxZjFhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg", 
+            "rating": "3.5"
+        }
+    ]
+}
