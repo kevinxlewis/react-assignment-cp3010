@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react";
-
 const Movies = ({ movieList }) => {
-	// Function to remove movie ... breaks everything.. why?
-	const [movie, setMovies] = useState(movieList.movies);
-
 	const removeMovie = (movie_name) => {
-		movie.name.filter((movie) => movie.name !== movie_name);
+		movieList.movies.filter((movie) => movie.name !== movie_name);
 	};
 
 	return (
