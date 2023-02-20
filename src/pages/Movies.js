@@ -1,24 +1,16 @@
 import { useEffect, useState } from "react";
 
-const Movies = () => {
-	const [movie, setMovie] = useState("");
-	const fetchData = () => {
-		fetch("./movies.json")
-			.then((res) => {
-				return res.json();
-			})
-			.then((movie) => {
-				setMovie(movie);
-			})
-			.catch((err) => console.log(err));
+const Movies = ({ movieList }) => {
+	// Function to remove movie ... breaks everything.. why?
+	const [movie, setMovies] = useState(movieList.movies);
+
+	const removeMovie = (movie_name) => {
+		movie.name.filter((movie) => movie.name !== movie_name);
 	};
-	useEffect(() => {
-		fetchData();
-	}, []);
 
 	return (
 		<div>
-			{movie.movies?.map((movie) => (
+			{movieList.movies.map((movie) => (
 				<div key={movie.name}>
 					<h1>{movie.name}</h1>
 					<img
@@ -28,7 +20,7 @@ const Movies = () => {
 					<h5>Release Date: {movie.release_date}</h5>
 					<h5>Starring: {movie.actors.join(", ")}</h5>
 					<h5>Rating: {movie.rating} &#9733;</h5>
-					<button>Remove Movie</button>
+					<button onClick={removeMovie}>Remove Movie</button>
 				</div>
 			))}
 		</div>
