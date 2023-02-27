@@ -6,7 +6,7 @@ import MovieReview from "./pages/MovieReview";
 import { useEffect, useState } from "react";
 
 function App() {
-	let [movie, setMovies] = useState();
+	let [movies, setMovies] = useState();
 
 	useEffect(() => {
 		fetch("./movies.json")
@@ -15,7 +15,7 @@ function App() {
 			.catch((err) => console.log(err));
 	}, []);
 
-	if (movie == null) {
+	if (movies == null) {
 		return <h2>Loading...</h2>;
 	}
 
@@ -29,9 +29,12 @@ function App() {
 						<Route
 							exact
 							path="/"
-							element={<Movies movieList={movie} />}
+							element={<Movies movieList={movies} />}
 						/>
-						<Route path="/MovieReview" element={<MovieReview />} />
+						<Route
+							path="/MovieReview"
+							element={<MovieReview movieList={movies} />}
+						/>
 					</Routes>
 				</div>
 			</div>
