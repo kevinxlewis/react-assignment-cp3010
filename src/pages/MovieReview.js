@@ -24,7 +24,7 @@ const MovieReview = (props) => {
 		<div>
 			<h1>Leave A Review!</h1>
 			<div id="form">
-				<form onSubmit={handleSubmission}>
+				<form onSubmit={handleSubmission} method="post">
 					<label>
 						Movie Name:
 						<input

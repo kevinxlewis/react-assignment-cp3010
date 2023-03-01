@@ -9,7 +9,7 @@ function App() {
 	let [movies, setMovies] = useState();
 
 	useEffect(() => {
-		fetch("./movies.json")
+		fetch("/")
 			.then((res) => res.json())
 			.then(setMovies)
 			.catch((err) => console.log(err));
@@ -29,11 +29,21 @@ function App() {
 						<Route
 							exact
 							path="/"
-							element={<Movies movieList={movies} />}
+							element={
+								<Movies
+									movieList={movies}
+									setMovies={setMovies}
+								/>
+							}
 						/>
 						<Route
 							path="/MovieReview"
-							element={<MovieReview movieList={movies} />}
+							element={
+								<MovieReview
+									movieList={movies}
+									setMovies={setMovies}
+								/>
+							}
 						/>
 					</Routes>
 				</div>
