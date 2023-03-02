@@ -1,18 +1,20 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Movies = (props) => {
 	const [movies, setMovies] = useState(props.movieList);
 
 	const removeMovie = (movie) => {
-		const index = props.movieList.movies.indexOf(movie); // Grabbing movie index
-		props.movieList.movies.splice(index, 1); // Removing movie index using .splice and only removing one
+		const index = props.movieList.indexOf(movie); // Grabbing movie index
+		props.movieList.splice(index, 1); // Removing movie index using .splice and only removing one
 		setMovies(movie); // updating state to reflect changes
 		console.log(props);
 	};
 
 	return (
 		<div>
-			{props.movieList.movies.map((movie) => (
+			<Link to="/movies"></Link>
+			{props.movieList.map((movie) => (
 				<div key={movie.id}>
 					<h1>{movie.name}</h1>
 					<img

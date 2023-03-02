@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MovieReview = (props) => {
 	const [movieName, setMovieName] = useState("");
@@ -9,8 +10,8 @@ const MovieReview = (props) => {
 
 	const handleSubmission = (event) => {
 		event.preventDefault();
-		props.movieList.movies.push({
-			id: props.movieList.movies.length + 1,
+		props.movieList.push({
+			id: props.movieList.length + 1,
 			name: movieName,
 			release_date: movieReleaseDate,
 			actors: movieActors,
@@ -22,9 +23,10 @@ const MovieReview = (props) => {
 
 	return (
 		<div>
+			<Link to="/reviews"></Link>
 			<h1>Leave A Review!</h1>
 			<div id="form">
-				<form onSubmit={handleSubmission} method="post">
+				<form onSubmit={handleSubmission} method="post" action="/reviews">
 					<label>
 						Movie Name:
 						<input
@@ -39,6 +41,7 @@ const MovieReview = (props) => {
 						Movie Poster:
 						<select
 							id="movie_poster"
+							name="movie_poster"
 							value={moviePoster}
 							onChange={(e) => setMoviePoster(e.target.value)}
 						>
