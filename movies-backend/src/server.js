@@ -1,61 +1,65 @@
-import express, { response } from "express";
-import { MongoClient } from 'mongodb'; 
+import path from "path";
 import multer from 'multer'; 
-import fs from 'fs';
+import express from "express";
 import { fileURLToPath } from "url";
+import { MongoClient, ObjectId } from 'mongodb'; 
+
+const __fileName = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__fileName);
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static(path.join(__dirname, "../posters")));
 
-// This works (thankfully)
-// Can see movies on home page :))
-app.get('/movies', async (request, response) => {
+const upload = multer({ dest: "posters/" });
 
+app.get(/^(?!\/api).+/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
+
+// Loading movies from database and displaying them on main page of application.
+app.get('/api/movies', async (req, res) => {
 	const client = new MongoClient("mongodb://0.0.0.0:27017");
 	await client.connect(); 
 	
 	const db = client.db("movies-db"); 
 	
 	const movieData = await db.collection("movies").find({}).toArray();
-	response.json(movieData); 
-
+	res.json(movieData); 
 });
 
-// Attempting to submit a review through the form
-// Can see new review load on home page of react app but does not go to db
-// Using Postman, can add a new document to db that is comprised of null values
-// why? 
-
-app.post('/submitReview', async (request, response) => {
-	
+// Adding a movie to the database via form submission using multer package for uploading a movie poster.
+app.post('/api/submitReview', upload.single("movie_poster"), async (req, res) => {
 	const client = new MongoClient("mongodb://0.0.0.0:27017"); 
 	await client.connect(); 
 
 	const db = client.db("movies-db"); 
 	
 	const insertMovie = await db.collection("movies").insertOne({
-		'name': request.body.name,
-		'release_date': request.body.release_date,
-		'actors': request.body.actors, 
-		'rating': request.body.rating
-	})
+		'name': req.body.movie_name, 
+		'poster': req.file.filename, 
+		'release_date': req.body.movie_date, 
+		'actors': req.body.movie_starrs, 
+		'rating': req.body.movie_rating 
+	});
+
 	console.log(insertMovie);
-	response.redirect("/movies"); 
+	res.redirect("/"); 
 });
 
-// Attempting to remove a movie from db, get: TypeError: Cannot read properties of undefined (reading 'movie')
-// Need to implement fix
-
-// app.post('/removeMovie', async (request, response) => {
-
-// 	const client = new MongoClient("mongodb://0.0.0.0:27017");
-// 	await client.connect(); 
+// Removing movie using ObjectId from database, not functional. 
+ app.post('/removeMovie', async (req, res) => {
+	const client = new MongoClient("mongodb://0.0.0.0:27017");
+	await client.connect(); 
 	
-// 	const db = client.db("movies-db");
+	const db = client.db("movies-db");
 
-// 	const deleteMovie = await db.collection('movies').deleteOne( {"movie" : request.body.movie} ); 
-// 	console.log(deleteMovie); 
-// })
+ 	const deleteMovie = await db.collection('movies').deleteOne({_id: new ObjectId(req.body._id)}); 
+ 	console.log(deleteMovie);
+});
 
 app.listen(8000, () => {
 	console.log("Server running on port 8000.");

@@ -4,12 +4,13 @@ import NavBar from "./NavBar";
 import Movies from "./pages/Movies";
 import MovieReview from "./pages/MovieReview";
 import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
 	let [movies, setMovies] = useState();
 
 	useEffect(() => {
-		fetch("/movies")
+		fetch("/api/movies")
 			.then((res) => res.json())
 			.then(setMovies)
 			.catch((err) => console.log(err));
@@ -23,7 +24,6 @@ function App() {
 		<BrowserRouter>
 			<div className="App">
 				<div id="body">
-					<h1>Movie Reviews</h1>
 					<NavBar />
 					<Routes>
 						<Route
