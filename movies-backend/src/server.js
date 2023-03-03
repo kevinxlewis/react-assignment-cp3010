@@ -1,57 +1,61 @@
-import express from "express";
-let movieData = [
-	{
-		id: 1,
-		name: "The Batman",
-		release_date: "March 4, 2022",
-		actors: ["Robert Pattinson", "Zoe Kravitz", "Paul Dano"],
-		poster: "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX1000_.jpg",
-		rating: "4.2",
-	},
-	{
-		id: 2,
-		name: "Top Gun: Maverick",
-		release_date: "May 27, 2022",
-		actors: ["Tom Cruise", "Miles Teller", "Val Kilmer"],
-		poster: "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
-		rating: "4.7",
-	},
-	{
-		id: 3,
-		name: "The Lord of the Rings: The Return of the King",
-		release_date: "December 17, 2003",
-		actors: ["Elijah Wood", "Ian McKellen", "Andy Serkis"],
-		poster: "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
-		rating: "4.5",
-	},
-	{
-		id: 4,
-		name: "Spider-Man 3",
-		release_date: "May 4, 2007",
-		actors: ["Tobey Maguire", "Kirsten Dunst", "Topher Grace"],
-		poster: "https://m.media-amazon.com/images/M/MV5BYTk3MDljOWQtNGI2My00OTEzLTlhYjQtOTQ4ODM2MzUwY2IwXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg",
-		rating: "3.0",
-	},
-];
+import express, { response } from "express";
+import { MongoClient } from 'mongodb'; 
+import multer from 'multer'; 
+import fs from 'fs';
+import { fileURLToPath } from "url";
 
 const app = express();
 
-app.get("/movies", (request, response) => {
-	response.json(movieData);
+
+// This works (thankfully)
+// Can see movies on home page :))
+app.get('/movies', async (request, response) => {
+
+	const client = new MongoClient("mongodb://0.0.0.0:27017");
+	await client.connect(); 
+	
+	const db = client.db("movies-db"); 
+	
+	const movieData = await db.collection("movies").find({}).toArray();
+	response.json(movieData); 
+
 });
 
-app.post("/reviews", (request, response) => {
+// Attempting to submit a review through the form
+// Can see new review load on home page of react app but does not go to db
+// Using Postman, can add a new document to db that is comprised of null values
+// why? 
+
+app.post('/submitReview', async (request, response) => {
 	
-	movieData.push({
-		//id: request.id,
-		"name": request.body.name,
-		"release_date": request.body.release_date,
-		"actors": request.body.actors,
-		"rating": request.body.rating,
-	});
-	console.log(request.body);
-	response.redirect("/movies");
+	const client = new MongoClient("mongodb://0.0.0.0:27017"); 
+	await client.connect(); 
+
+	const db = client.db("movies-db"); 
+	
+	const insertMovie = await db.collection("movies").insertOne({
+		'name': request.body.name,
+		'release_date': request.body.release_date,
+		'actors': request.body.actors, 
+		'rating': request.body.rating
+	})
+	console.log(insertMovie);
+	response.redirect("/movies"); 
 });
+
+// Attempting to remove a movie from db, get: TypeError: Cannot read properties of undefined (reading 'movie')
+// Need to implement fix
+
+// app.post('/removeMovie', async (request, response) => {
+
+// 	const client = new MongoClient("mongodb://0.0.0.0:27017");
+// 	await client.connect(); 
+	
+// 	const db = client.db("movies-db");
+
+// 	const deleteMovie = await db.collection('movies').deleteOne( {"movie" : request.body.movie} ); 
+// 	console.log(deleteMovie); 
+// })
 
 app.listen(8000, () => {
 	console.log("Server running on port 8000.");

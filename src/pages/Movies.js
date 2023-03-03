@@ -23,9 +23,9 @@ const Movies = (props) => {
 					/>
 					<h5>Release Date: {movie.release_date}</h5>
 					<h5>
-						Starring: {movie.actors.toString().replace(/,/g, ", ")}
+						Starring: {movie.actors + " "}
 					</h5>
-					<h5>Rating: {movie.rating} &#9733;</h5>
+					<h5>Rating: {movie.rating}/5</h5>
 					<button onClick={() => removeMovie(movie)}>
 						Remove Movie
 					</button>

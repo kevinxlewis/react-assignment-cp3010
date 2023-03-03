@@ -37,7 +37,7 @@ function App() {
 							}
 						/>
 						<Route
-							path="/MovieReview"
+							exact path="/MovieReview"
 							element={
 								<MovieReview
 									movieList={movies}
